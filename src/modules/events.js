@@ -21,4 +21,9 @@ export default function events() {
             target.closest('.fixed-gift').remove();
         }
     });
+    window.addEventListener('scroll', () => {
+        const headerHeight = document.querySelector('header').clientHeight;
+        const arrowUp = document.getElementById('totop');
+        (window.pageYOffset > headerHeight) ? arrowUp.classList.add('active') : arrowUp.classList.remove('active');
+    })
 }
