@@ -4,6 +4,7 @@ export default function events() {
         console.log(target);
         const clubSelectUl = document.querySelector('.clubs-list ul');
         const forms = document.querySelectorAll('.popup');
+        const popupMenu = document.querySelector('.popup-menu');
         const toggleForm = (id) => {
             document.getElementById(id.slice(1)).classList.toggle('active');
         }
@@ -19,6 +20,13 @@ export default function events() {
         if (target.closest('.fixed-gift')) {
             toggleForm('#gift');
             target.closest('.fixed-gift').remove();
+        }
+        if (target.closest('.menu-button')) {
+            (getComputedStyle(popupMenu).display === 'none') ? popupMenu.style.display = 'flex' : popupMenu.style.display = 'none';
+        }
+        if (target.closest('.close-menu-btn') || target.closest('.scroll')) {
+            console.log(1);
+            popupMenu.style.display = 'none';
         }
     });
     window.addEventListener('scroll', () => {
