@@ -29,13 +29,16 @@ export default function events() {
         }
     });
     const menu = document.querySelector('.top-menu');
-    const sticky = menu.offsetTop;
+    let sticky = menu.offsetTop;
+    window.addEventListener('resize', () => {
+        sticky = menu.offsetTop;
+    });
     window.addEventListener('scroll', () => {
         const headerHeight = document.querySelector('header').clientHeight;
         const head = document.querySelector('.head');
         const arrowUp = document.getElementById('totop');
         (window.pageYOffset > headerHeight) ? arrowUp.classList.add('active') : arrowUp.classList.remove('active');
-        if (window.pageYOffset >= sticky) {
+        if (window.pageYOffset >= sticky && document.documentElement.clientWidth < 768) {
             menu.style.position = 'fixed';
             head.style.paddingBottom = "60px"
         } else {
