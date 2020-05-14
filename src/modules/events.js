@@ -1,7 +1,6 @@
 export default function events() {
     document.body.addEventListener('click', event => {
         const {target} = event;
-        console.log(target);
         const clubSelectUl = document.querySelector('.clubs-list ul');
         const forms = document.querySelectorAll('.popup');
         const popupMenu = document.querySelector('.popup-menu');
@@ -29,9 +28,19 @@ export default function events() {
             popupMenu.style.display = 'none';
         }
     });
+    const menu = document.querySelector('.top-menu');
+    const sticky = menu.offsetTop;
     window.addEventListener('scroll', () => {
         const headerHeight = document.querySelector('header').clientHeight;
+        const head = document.querySelector('.head');
         const arrowUp = document.getElementById('totop');
         (window.pageYOffset > headerHeight) ? arrowUp.classList.add('active') : arrowUp.classList.remove('active');
+        if (window.pageYOffset >= sticky) {
+            menu.style.position = 'fixed';
+            head.style.paddingBottom = "60px"
+        } else {
+            menu.style.position = '';
+            head.style.paddingBottom = "0px"
+        }
     })
 }
