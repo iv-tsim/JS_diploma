@@ -8,7 +8,6 @@ export default function events() {
             document.getElementById(id.slice(1)).classList.toggle('active');
         }
         if (target.closest('.clubs-list')) {
-            console.log(1);
             clubSelectUl.classList.toggle('active');
         }
         if (target.dataset.popup === '#callback_form' || target.dataset.popup === '#free_visit_form') {
@@ -16,6 +15,10 @@ export default function events() {
         }
         if (target.classList.contains('close_icon') || target.classList.contains('overlay')) {
             forms.forEach(item => item.classList.remove('active'));
+        }
+        if (target.closest('.fixed-gift')) {
+            toggleForm('#gift');
+            target.closest('.fixed-gift').remove();
         }
     });
 }
