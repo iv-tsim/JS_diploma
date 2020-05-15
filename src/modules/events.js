@@ -1,6 +1,7 @@
 export default function events() {
     document.body.addEventListener('click', event => {
         const {target} = event;
+        console.log(target);
         const clubSelectUl = document.querySelector('.clubs-list ul');
         const forms = document.querySelectorAll('.popup');
         const popupMenu = document.querySelector('.popup-menu');
@@ -9,6 +10,9 @@ export default function events() {
         }
         if (target.closest('.clubs-list')) {
             clubSelectUl.classList.toggle('active');
+        }
+        if (!target.closest('.clubs-list')) {
+            clubSelectUl.classList.remove('active');
         }
         if (target.dataset.popup === '#callback_form' || target.dataset.popup === '#free_visit_form') {
             toggleForm(target.dataset.popup);
