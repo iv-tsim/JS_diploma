@@ -1,10 +1,12 @@
+import countPrice from "./calc";
 export default function events() {
     document.body.addEventListener('click', event => {
         const {target} = event;
-        console.log(target);
         const clubSelectUl = document.querySelector('.clubs-list ul');
         const forms = document.querySelectorAll('.popup');
         const popupMenu = document.querySelector('.popup-menu');
+        const calcTimeInputs = target.closest('.time input');
+        const calcClubInputs = target.closest('.club input');
         const toggleForm = (id) => {
             document.getElementById(id.slice(1)).classList.toggle('active');
         }
@@ -30,7 +32,19 @@ export default function events() {
         if (target.closest('.close-menu-btn') || target.closest('.scroll') || target === popupMenu) {
             popupMenu.style.display = 'none';
         }
+        if (calcTimeInputs) {
+            countPrice({checkedInputTime : target.value});
+        }
+        if (calcClubInputs) {
+            countPrice({checkedInputClub : target.value});
+        }
     });
+    document.body.addEventListener('input', (event) => {
+        const calcPromocodeInput = event.target.closest('.price .input-text input');
+        if (calcPromocodeInput) {
+            countPrice({promocodeValue : calcPromocodeInput.value});
+        }
+    })
     const menu = document.querySelector('.top-menu');
     let sticky = menu.offsetTop;
     window.addEventListener('resize', () => {
