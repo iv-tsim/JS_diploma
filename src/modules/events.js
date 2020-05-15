@@ -13,7 +13,7 @@ export default function events() {
         if (target.dataset.popup === '#callback_form' || target.dataset.popup === '#free_visit_form') {
             toggleForm(target.dataset.popup);
         }
-        if (target.classList.contains('close_icon') || target.classList.contains('overlay')) {
+        if (target.classList.contains('close_icon') || target.classList.contains('overlay') || target.classList.contains('close-btn')) {
             forms.forEach(item => item.classList.remove('active'));
         }
         if (target.closest('.fixed-gift')) {
@@ -23,8 +23,7 @@ export default function events() {
         if (target.closest('.menu-button')) {
             (getComputedStyle(popupMenu).display === 'none') ? popupMenu.style.display = 'flex' : popupMenu.style.display = 'none';
         }
-        if (target.closest('.close-menu-btn') || target.closest('.scroll')) {
-            console.log(1);
+        if (target.closest('.close-menu-btn') || target.closest('.scroll') || target === popupMenu) {
             popupMenu.style.display = 'none';
         }
     });
